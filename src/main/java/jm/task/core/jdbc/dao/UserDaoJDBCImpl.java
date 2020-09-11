@@ -18,11 +18,11 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
         PreparedStatement preparedStatement = null;
         connection =getConnection();
 
-        String sql = "CREATE TABLE IF NOT EXISTS `dbusers`.`USERS` (\n" +
-                "  `ID` BIGINT NOT NULL AUTO_INCREMENT,\n" +
-                "  `FIRSTNAME` VARCHAR(255) NOT NULL,\n" +
-                "  `SECONDNAME` VARCHAR(255) NOT NULL,\n" +
-                "  `AGE` INT NOT NULL,\n" +
+        String sql = "CREATE TABLE IF NOT EXISTS `dbusers`.`user` (\n" +
+                "  `id` BIGINT NOT NULL AUTO_INCREMENT,\n" +
+                "  `name` VARCHAR(255) NOT NULL,\n" +
+                "  `lastName` VARCHAR(255) NOT NULL,\n" +
+                "  `age` INT NOT NULL,\n" +
                 "  PRIMARY KEY (`ID`))\n" +
                 "ENGINE = InnoDB\n" +
                 "DEFAULT CHARACTER SET = utf8;\n";
@@ -46,7 +46,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
         PreparedStatement preparedStatement = null;
         connection = getConnection();
 
-        String sql="DROP TABLE IF EXISTS `dbusers`.`USERS`;";
+        String sql="DROP TABLE IF EXISTS `dbusers`.`user`;";
 
         try{
             preparedStatement = connection.prepareStatement(sql);
@@ -67,7 +67,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
         connection = getConnection();
         PreparedStatement preparedStatement = null;
 
-        String sql = "INSERT INTO USERS (FIRSTNAME, SECONDNAME, AGE) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO user (name, lastName, age) VALUES(?, ?, ?)";
         try{
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,name);
@@ -92,7 +92,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
         connection = getConnection();
         PreparedStatement preparedStatement = null;
 
-        String sql ="DELETE FROM USERS WHERE ID=?";
+        String sql ="DELETE FROM user WHERE id=?";
 
         try{
             preparedStatement = connection.prepareStatement(sql);
@@ -116,7 +116,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
         connection = getConnection();
         List<User>userList = new ArrayList<>();
 
-        String sql = "SELECT ID, FIRSTNAME, SECONDNAME, AGE FROM USERS";
+        String sql = "SELECT id, name, lastName, age FROM user";
 
         Statement statement = null;
 
@@ -128,8 +128,8 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             while (resultSet.next()) {
                 User user = new User();
                 user.setId(resultSet.getLong("ID"));
-                user.setName(resultSet.getString("FIRSTNAME"));
-                user.setLastName(resultSet.getString("SECONDNAME"));
+                user.setName(resultSet.getString("NAME"));
+                user.setLastName(resultSet.getString("LASTNAME"));
                 user.setAge(resultSet.getByte("AGE"));
 
                 userList.add(user);
@@ -151,7 +151,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
         connection = getConnection();
         PreparedStatement preparedStatement = null;
 
-        String sql = "TRUNCATE TABLE USERS";
+        String sql = "TRUNCATE TABLE user";
 
         try{
             preparedStatement = connection.prepareStatement(sql);
