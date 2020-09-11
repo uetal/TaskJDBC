@@ -67,6 +67,7 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
         Criteria criteria = session.createCriteria(User.class);
         //Query query = session.createQuery("from User");
         List<User>users = criteria.list();
+        session.close();
         return users;
     }
 
