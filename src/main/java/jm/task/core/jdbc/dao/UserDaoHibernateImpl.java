@@ -64,9 +64,8 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
     public List<User> getAllUsers() {
         Session session = Util.getSessionFactory().openSession();
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(User.class);
-        //Query query = session.createQuery("from User");
-        List<User>users = criteria.list();
+        Query query = session.createSQLQuery("SELECT * FROM User").addEntity(User.class);
+        List<User>users = query.list();
         session.close();
         return users;
     }
