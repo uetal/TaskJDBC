@@ -19,7 +19,7 @@ import java.util.Properties;
 
 public class Util {
     private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/dbusers?useSSL=false";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/dbusers?useSSL=false&serverTimezone=UTC";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "root";
 
