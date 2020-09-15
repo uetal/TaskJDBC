@@ -42,7 +42,7 @@ public class Util {
     private static SessionFactory sessionFactory = buildSessionFactory();
     private static SessionFactory buildSessionFactory(){
         Properties properties = new Properties();
-        properties.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/dbusers");
+        properties.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/dbusers?serverTimezone=UTC");
         properties.setProperty("hibernate.connection.dialect", "hibernate.dialect");
         properties.setProperty("hibernate.connection.username", "root");
         properties.setProperty("hibernate.connection.password", "root");
